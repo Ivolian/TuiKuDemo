@@ -5,12 +5,10 @@
         android:title="仅中文"
         android:orderInCategory="10"
         app:showAsAction="never" />
-
     <item
         android:title="仅英文"
         android:orderInCategory="20"
         app:showAsAction="never" />
-
     <item
         android:title="中英混合"
         android:orderInCategory="30"

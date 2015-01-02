@@ -9,9 +9,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -40,11 +37,9 @@
 
     <!--发现-->
     <RelativeLayout
+        android:id="@+id/rl_left_article_hot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -78,9 +73,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
+        android:background="@drawable/drawer_menu_selector"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -110,9 +103,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
+        android:background="@drawable/drawer_menu_selector"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -142,9 +133,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
+        android:background="@drawable/drawer_menu_selector"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -174,9 +163,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
+        android:background="@drawable/drawer_menu_selector"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -206,9 +193,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
+        android:background="@drawable/drawer_menu_selector"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
