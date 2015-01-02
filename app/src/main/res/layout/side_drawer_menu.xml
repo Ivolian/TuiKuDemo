@@ -9,10 +9,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
         <ImageView
+
             android:layout_width="19dp"
             android:layout_height="19dp"
             android:src="@drawable/left_article"
@@ -27,7 +31,7 @@
             android:textColor="@color/black"
             android:textSize="19sp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="12dp"
             android:layout_toRightOf="@+id/left_article"
             android:layout_toEndOf="@+id/left_article" />
     </RelativeLayout>
@@ -38,6 +42,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -46,6 +53,7 @@
             android:layout_height="19dp"
             android:src="@drawable/left_article_hot"
             android:layout_marginLeft="25dp"
+            android:layout_centerVertical="true"
             android:id="@+id/left_article_hot"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -59,7 +67,7 @@
             android:textColor="@color/black"
             android:textSize="19sp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="12dp"
             android:layout_toRightOf="@+id/left_article_hot"
             android:layout_toEndOf="@+id/left_article_hot" />
     </RelativeLayout>
@@ -70,6 +78,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -88,7 +99,7 @@
             android:textColor="@color/black"
             android:textSize="19sp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="12dp"
             android:layout_toRightOf="@+id/left_topic"
             android:layout_toEndOf="@+id/left_topic" />
     </RelativeLayout>
@@ -99,6 +110,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -117,7 +131,7 @@
             android:textColor="@color/black"
             android:textSize="19sp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="12dp"
             android:layout_toRightOf="@+id/left_site"
             android:layout_toEndOf="@+id/left_site" />
     </RelativeLayout>
@@ -128,6 +142,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -146,7 +163,7 @@
             android:textColor="@color/black"
             android:textSize="19sp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="12dp"
             android:layout_toRightOf="@+id/left_search"
             android:layout_toEndOf="@+id/left_search" />
     </RelativeLayout>
@@ -157,6 +174,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -175,7 +195,7 @@
             android:textColor="@color/black"
             android:textSize="19sp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="12dp"
             android:layout_toRightOf="@+id/left_offline"
             android:layout_toEndOf="@+id/left_offline" />
     </RelativeLayout>
@@ -186,6 +206,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -204,7 +227,7 @@
             android:textColor="@color/black"
             android:textSize="19sp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="12dp"
             android:layout_toRightOf="@+id/left_setting"
             android:layout_toEndOf="@+id/left_setting" />
     </RelativeLayout>
