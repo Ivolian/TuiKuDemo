@@ -10,6 +10,7 @@
         android:id="@+id/rl_left_article"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/drawer_menu_selector"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -40,6 +41,7 @@
         android:id="@+id/rl_left_article_hot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/drawer_menu_selector"
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
@@ -71,6 +73,7 @@
 
     <!--主题-->
     <RelativeLayout
+        android:id="@+id/rl_left_topic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/drawer_menu_selector"
@@ -101,6 +104,7 @@
 
     <!--站点-->
     <RelativeLayout
+        android:id="@+id/rl_left_site"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/drawer_menu_selector"
@@ -131,6 +135,7 @@
 
     <!--搜索-->
     <RelativeLayout
+        android:id="@+id/rl_left_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/drawer_menu_selector"
@@ -161,6 +166,7 @@
 
     <!--离线-->
     <RelativeLayout
+        android:id="@+id/rl_left_offline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/drawer_menu_selector"
@@ -191,6 +197,7 @@
 
     <!--设置-->
     <RelativeLayout
+        android:id="@+id/rl_left_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/drawer_menu_selector"
