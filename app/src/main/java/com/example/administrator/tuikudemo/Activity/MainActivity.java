@@ -27,7 +27,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
      * 旋转屏幕 recreate 会重建 fragments，而且原先 hide 的 fragment 会被 show
      */
 
-    // ============================ final tags ============================
+    // ============================ tags ============================
 
     final String HOT = "hot";
     final String TOPIC = "topic";
@@ -66,7 +66,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     private void initToolbarAndDrawerLayout() {
 
-         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("发现文章");
 
         setSupportActionBar(toolbar);
@@ -261,15 +261,21 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
-    private String getTitleByTag(String tag){
+    private String getTitleByTag(String tag) {
 
         switch (tag) {
             case HOT:
                 return "发现文章";
+            case TOPIC:
+                return "我的主题";
+            case SITE:
+                return "我的站点";
+            case OFFLINE:
+                return "离线阅读";
             case SETTING:
                 return "相关设置";
             default:
-                throw new RuntimeException("getRelativeLayoutIdByTag: wrong tag");
+                throw new RuntimeException("getTitleByTag: wrong tag");
         }
 
     }
