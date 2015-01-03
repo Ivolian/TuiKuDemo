@@ -19,6 +19,7 @@ import com.example.administrator.tuikudemo.Fragment.SettingFragment;
 import com.example.administrator.tuikudemo.Fragment.SiteFragment;
 import com.example.administrator.tuikudemo.Fragment.TopicFragment;
 import com.example.administrator.tuikudemo.R;
+import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
 
@@ -95,8 +96,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     private void initFirstFragment() {
 
-        // TODO MODIFY TO HOT
-        String tag = ARTICLE;
+        String tag = HOT;
         addFragment(getFragmentByTag(tag));
         selectSideMenuItemByTag(tag);
     }
@@ -285,6 +285,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
         dialogBuilder
+                .withEffect(Effectstype.Newspager)
                 .withTitle("提示")
                 .withMessage("该模块没人愿意开发。")
                 .show();
