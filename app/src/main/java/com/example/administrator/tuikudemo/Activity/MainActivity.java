@@ -10,6 +10,9 @@ import android.view.Menu;
 import android.view.View;
 
 import com.example.administrator.tuikudemo.Fragment.HotFragment;
+import com.example.administrator.tuikudemo.Fragment.OfflineFragment;
+import com.example.administrator.tuikudemo.Fragment.SettingFragment;
+import com.example.administrator.tuikudemo.Fragment.SiteFragment;
 import com.example.administrator.tuikudemo.Fragment.TopicFragment;
 import com.example.administrator.tuikudemo.R;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
@@ -17,9 +20,25 @@ import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
+    /**
+     * 旋转屏幕 recreate 会重建 fragments，而且原先 hide 的 fragment 会被 show
+     */
+
+    // ============================ final tags ============================
+
+    final String HOT = "hot";
+    final String TOPIC = "topic";
+    final String SITE = "site";
+    final String OFFLINE = "offline";
+    final String SETTING = "setting";
+
+    // ============================ fields ============================
+
+    String currentTag;
+
     DrawerLayout drawerLayout;
 
-    View sideMenuItemSelected;
+    // ============================ onCreate ============================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +47,16 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initToolbarAndDrawerLayout();
         addOnClickListenersForSideMenu();
-        initHotFragment();
+
+        // onCreate
+        if (savedInstanceState == null) {
+            initFragment();
+        }
+        // onRecreate
+        else {
+            currentTag = savedInstanceState.getString("currentTag");
+            selectSideMenuItemByTag(currentTag);
+        }
     }
 
     private void initToolbarAndDrawerLayout() {
@@ -57,11 +85,20 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         findViewById(R.id.rl_left_setting).setOnClickListener(this);
     }
 
-    private void initHotFragment() {
+    private void initFragment() {
 
-        selectSideMenuItem(R.id.rl_left_article_hot);
-        sideMenuItemSelected = findViewById(R.id.rl_left_article_hot);
+        selectSideMenuItemByTag(HOT);
         addFragment(new HotFragment());
+        currentTag = HOT;
+    }
+
+    // ============================ onSaveInstanceState ============================
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+        outState.putString("currentTag", currentTag);
     }
 
     // ============================ onCreateOptionsMenu ============================
@@ -80,29 +117,93 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         switch (v.getId()) {
 
-            // 推荐
             case R.id.rl_left_article:
                 noOneProductThisModule();
                 break;
 
-            // 发现
             case R.id.rl_left_article_hot:
-                changeToHot();
+                onSideMenuItemClick(HOT);
                 break;
 
-            // 主题
             case R.id.rl_left_topic:
-                changeToTopic();
+                onSideMenuItemClick(TOPIC);
                 break;
 
-            // 搜索
+            case R.id.rl_left_site:
+                onSideMenuItemClick(SITE);
+                break;
+
             case R.id.rl_left_search:
                 noOneProductThisModule();
+                break;
+
+            case R.id.rl_left_offline:
+                onSideMenuItemClick(OFFLINE);
+                break;
+
+            case R.id.rl_left_setting:
+                onSideMenuItemClick(SETTING);
                 break;
         }
     }
 
     // ============================ other functions ============================
+
+    private void onSideMenuItemClick(String tag) {
+
+        unSelectCurrentSideMenuItem();
+        selectSideMenuItemByTag(tag);
+        replaceFragment(getFragmentByTag(tag));
+        currentTag = tag;
+        drawerLayout.closeDrawers();
+    }
+
+    private void unSelectCurrentSideMenuItem() {
+
+        int currentRelativeLayoutId = getRelativeLayoutIdByTag(currentTag);
+        findViewById(currentRelativeLayoutId).setBackgroundResource(R.drawable.drawer_menu_selector);
+    }
+
+    private void selectSideMenuItemByTag(String tag) {
+
+        int relativeLayoutId = getRelativeLayoutIdByTag(tag);
+        findViewById(relativeLayoutId).setBackgroundColor(getResources().getColor(R.color.green));
+    }
+
+    private int getRelativeLayoutIdByTag(String tag) {
+
+        switch (tag) {
+            case HOT:
+                return R.id.rl_left_article_hot;
+            case TOPIC:
+                return R.id.rl_left_topic;
+            case SITE:
+                return R.id.rl_left_site;
+            case OFFLINE:
+                return R.id.rl_left_offline;
+            case SETTING:
+                return R.id.rl_left_setting;
+            default:
+                throw new RuntimeException("getRelativeLayoutIdByTag: wrong tag");
+        }
+    }
+
+    private Fragment getFragmentByTag(String tag) {
+        switch (tag) {
+            case HOT:
+                return new HotFragment();
+            case TOPIC:
+                return new TopicFragment();
+            case SITE:
+                return new SiteFragment();
+            case OFFLINE:
+                return new OfflineFragment();
+            case SETTING:
+                return new SettingFragment();
+            default:
+                throw new RuntimeException("getFragmentByTag: wrong tag");
+        }
+    }
 
     private void noOneProductThisModule() {
 
@@ -123,34 +224,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, fragment).commit();
-    }
-
-    private void selectSideMenuItem(int relativeLayoutId) {
-
-        findViewById(relativeLayoutId).setBackgroundColor(getResources().getColor(R.color.green));
-    }
-
-    private void unSelectSideMenuItem() {
-
-        sideMenuItemSelected.setBackgroundResource(R.drawable.drawer_menu_selector);
-    }
-
-    private void changeToHot() {
-
-        unSelectSideMenuItem();
-        selectSideMenuItem(R.id.rl_left_article_hot);
-        sideMenuItemSelected = findViewById(R.id.rl_left_article_hot);
-        replaceFragment(new HotFragment());
-        drawerLayout.closeDrawers();
-    }
-
-    private void changeToTopic() {
-
-        unSelectSideMenuItem();
-        selectSideMenuItem(R.id.rl_left_topic);
-        sideMenuItemSelected = findViewById(R.id.rl_left_topic);
-        replaceFragment(new TopicFragment());
-        drawerLayout.closeDrawers();
     }
 
 }
