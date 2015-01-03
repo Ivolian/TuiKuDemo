@@ -76,18 +76,22 @@
         android:layout_alignTop="@+id/iv_ke"
         android:layout_toEndOf="@+id/iv_ke" />
 
-    <LinearLayout android:layout_height="50dp"
+    <LinearLayout
+        android:layout_height="50dp"
         android:layout_width="275dp"
         android:background="@color/green"
         android:layout_marginTop="41dp"
         android:layout_below="@+id/iv_ke"
         android:layout_alignStart="@+id/iv_shu">
-        <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:textColor="@color/white"
             android:textSize="19sp"
             android:gravity="center"
-            android:text="智能推荐，从登陆开始！"/>
-        </LinearLayout>
+            android:text="智能推荐，从登陆开始！" />
+    </LinearLayout>
 
 
 </RelativeLayout>

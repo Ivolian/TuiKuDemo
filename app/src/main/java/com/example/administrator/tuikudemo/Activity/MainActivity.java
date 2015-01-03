@@ -143,7 +143,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 break;
 
             case R.id.rl_left_search:
-                noOneProductThisModule();
+                showCustomDialog("提示","搜索功能不打算开发。");
                 break;
 
             case R.id.rl_left_offline:
@@ -281,13 +281,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     // ============================ basic functions ============================
 
-    private void noOneProductThisModule() {
+    private void showCustomDialog(String title,String message) {
 
         NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
         dialogBuilder
-                .withEffect(Effectstype.Newspager)
-                .withTitle("提示")
-                .withMessage("该模块没人愿意开发。")
+                .withEffect(Effectstype.Shake)
+                .withTitle(title)
+                .withMessage(message)
                 .show();
     }
 
