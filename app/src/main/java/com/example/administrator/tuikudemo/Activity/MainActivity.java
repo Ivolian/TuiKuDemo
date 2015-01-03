@@ -39,6 +39,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     String currentTag;
 
+    Toolbar toolbar;
+
     DrawerLayout drawerLayout;
 
     // ============================ onCreate ============================
@@ -64,7 +66,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     private void initToolbarAndDrawerLayout() {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("发现文章");
 
         setSupportActionBar(toolbar);
@@ -169,6 +171,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         imageView.setBackgroundResource(getBackgroundResourceByTag(currentTag, false));
         TextView textView = (TextView) current.getChildAt(1);
         textView.setTextColor(getResources().getColor(R.color.black));
+
+        toolbar.setTitle(getTitleByTag(currentTag));
     }
 
     private void selectSideMenuItemByTag(String tag) {
@@ -179,6 +183,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         imageView.setBackgroundResource(getBackgroundResourceByTag(tag, true));
         TextView textView = (TextView) relativeLayout.getChildAt(1);
         textView.setTextColor(getResources().getColor(R.color.white));
+
+        toolbar.setTitle(getTitleByTag(tag));
     }
 
     private int getRelativeLayoutIdByTag(String tag) {
@@ -253,6 +259,19 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             default:
                 throw new RuntimeException("getRelativeLayoutIdByTag: wrong tag");
         }
+    }
+
+    private String getTitleByTag(String tag){
+
+        switch (tag) {
+            case HOT:
+                return "发现文章";
+            case SETTING:
+                return "相关设置";
+            default:
+                throw new RuntimeException("getRelativeLayoutIdByTag: wrong tag");
+        }
+
     }
 
 }

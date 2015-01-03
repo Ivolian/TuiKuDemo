@@ -1,6 +1,7 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -8,11 +9,12 @@
         android:layout_width="match_parent"
         android:background="@color/white" />
 
+    <include layout="@layout/line" />
+
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/toolbar">
+        android:layout_width="match_parent">
 
         <!-- Content -->
         <FrameLayout
@@ -27,4 +29,4 @@
 
     </android.support.v4.widget.DrawerLayout>
 
-</RelativeLayout>
+</LinearLayout>
