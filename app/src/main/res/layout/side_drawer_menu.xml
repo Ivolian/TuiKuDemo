@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="19dp"
             android:layout_height="19dp"
-            android:src="@drawable/left_article"
+            android:background="@drawable/left_article"
             android:layout_marginLeft="25dp"
             android:layout_centerVertical="true"
             android:id="@+id/left_article" />
@@ -48,7 +48,7 @@
         <ImageView
             android:layout_width="19dp"
             android:layout_height="19dp"
-            android:src="@drawable/left_article_hot"
+            android:background="@drawable/left_article_hot"
             android:layout_marginLeft="25dp"
             android:layout_centerVertical="true"
             android:id="@+id/left_article_hot"
@@ -83,7 +83,7 @@
         <ImageView
             android:layout_width="19dp"
             android:layout_height="19dp"
-            android:src="@drawable/left_topic"
+            android:background="@drawable/left_topic"
             android:layout_marginLeft="25dp"
             android:layout_centerVertical="true"
             android:id="@+id/left_topic" />
@@ -114,7 +114,7 @@
         <ImageView
             android:layout_width="19dp"
             android:layout_height="19dp"
-            android:src="@drawable/left_site"
+            android:background="@drawable/left_site"
             android:layout_marginLeft="25dp"
             android:layout_centerVertical="true"
             android:id="@+id/left_site" />
@@ -145,7 +145,7 @@
         <ImageView
             android:layout_width="19dp"
             android:layout_height="19dp"
-            android:src="@drawable/left_search"
+            android:background="@drawable/left_search"
             android:layout_marginLeft="25dp"
             android:layout_centerVertical="true"
             android:id="@+id/left_search" />
@@ -176,7 +176,7 @@
         <ImageView
             android:layout_width="19dp"
             android:layout_height="19dp"
-            android:src="@drawable/left_offline"
+            android:background="@drawable/left_offline"
             android:layout_marginLeft="25dp"
             android:layout_centerVertical="true"
             android:id="@+id/left_offline" />
@@ -207,7 +207,7 @@
         <ImageView
             android:layout_width="19dp"
             android:layout_height="19dp"
-            android:src="@drawable/left_setting"
+            android:background="@drawable/left_setting"
             android:layout_marginLeft="25dp"
             android:layout_centerVertical="true"
             android:id="@+id/left_setting" />

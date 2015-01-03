@@ -8,6 +8,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.administrator.tuikudemo.Fragment.HotFragment;
 import com.example.administrator.tuikudemo.Fragment.OfflineFragment;
@@ -151,23 +154,31 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     private void onSideMenuItemClick(String tag) {
 
+        replaceFragment(getFragmentByTag(tag));
+        drawerLayout.closeDrawers();
         unSelectCurrentSideMenuItem();
         selectSideMenuItemByTag(tag);
-        replaceFragment(getFragmentByTag(tag));
         currentTag = tag;
-        drawerLayout.closeDrawers();
     }
 
     private void unSelectCurrentSideMenuItem() {
 
-        int currentRelativeLayoutId = getRelativeLayoutIdByTag(currentTag);
-        findViewById(currentRelativeLayoutId).setBackgroundResource(R.drawable.drawer_menu_selector);
+        RelativeLayout current = (RelativeLayout) findViewById(getRelativeLayoutIdByTag(currentTag));
+        current.setBackgroundResource(R.drawable.drawer_menu_selector);
+        ImageView imageView = (ImageView) current.getChildAt(0);
+        imageView.setBackgroundResource(getBackgroundResourceByTag(currentTag, false));
+        TextView textView = (TextView) current.getChildAt(1);
+        textView.setTextColor(getResources().getColor(R.color.black));
     }
 
     private void selectSideMenuItemByTag(String tag) {
 
-        int relativeLayoutId = getRelativeLayoutIdByTag(tag);
-        findViewById(relativeLayoutId).setBackgroundColor(getResources().getColor(R.color.green));
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(getRelativeLayoutIdByTag(tag));
+        relativeLayout.setBackgroundColor(getResources().getColor(R.color.green));
+        ImageView imageView = (ImageView) relativeLayout.getChildAt(0);
+        imageView.setBackgroundResource(getBackgroundResourceByTag(tag, true));
+        TextView textView = (TextView) relativeLayout.getChildAt(1);
+        textView.setTextColor(getResources().getColor(R.color.white));
     }
 
     private int getRelativeLayoutIdByTag(String tag) {
@@ -224,6 +235,24 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, fragment).commit();
+    }
+
+    private int getBackgroundResourceByTag(String tag, Boolean selected) {
+
+        switch (tag) {
+            case HOT:
+                return selected ? R.drawable.left_article_hot_selected : R.drawable.left_article_hot;
+            case TOPIC:
+                return selected ? R.drawable.left_topic_selected : R.drawable.left_topic;
+            case SITE:
+                return selected ? R.drawable.left_site_selected : R.drawable.left_site;
+            case OFFLINE:
+                return selected ? R.drawable.left_offline_selected : R.drawable.left_offline;
+            case SETTING:
+                return selected ? R.drawable.left_setting_selected : R.drawable.left_setting;
+            default:
+                throw new RuntimeException("getRelativeLayoutIdByTag: wrong tag");
+        }
     }
 
 }
