@@ -71,7 +71,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         // 这一个无奈的 bug 导致的
-        toolbar.setTitle("发现文章");
+        toolbar.setTitle("");
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -95,7 +95,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     private void initFirstFragment() {
 
-        String tag = HOT;
+        // TODO MODIFY TO HOT
+        String tag = ARTICLE;
         addFragment(getFragmentByTag(tag));
         selectSideMenuItemByTag(tag);
     }
