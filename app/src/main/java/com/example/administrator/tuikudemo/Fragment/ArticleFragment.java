@@ -27,7 +27,6 @@ public class ArticleFragment extends Fragment {
         initImageView(R.id.iv_ke, 70, "科技", "#E040FB");
         initImageView(R.id.iv_she, 45, "设计", "#536DFE");
         initImageView(R.id.iv_chan, 65, "产品", "#AEEA00");
-
         initImageView(R.id.iv_chang, 57, "创业", "#8BC34A");
 
         return rootView;
