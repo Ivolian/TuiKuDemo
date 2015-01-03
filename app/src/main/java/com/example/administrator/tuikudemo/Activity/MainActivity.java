@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.administrator.tuikudemo.Fragment.ArticleFragment;
 import com.example.administrator.tuikudemo.Fragment.HotFragment;
 import com.example.administrator.tuikudemo.Fragment.OfflineFragment;
 import com.example.administrator.tuikudemo.Fragment.SettingFragment;
@@ -29,6 +30,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     // ============================ tags ============================
 
+    final String ARTICLE = "Article";
     final String HOT = "hot";
     final String TOPIC = "topic";
     final String SITE = "site";
@@ -37,7 +39,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     // ============================ fields ============================
 
-    String currentTag;
+    String currentTag = null;
 
     Toolbar toolbar;
 
@@ -55,24 +57,25 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         // onCreate
         if (savedInstanceState == null) {
-            initFragment();
+            initFirstFragment();
         }
+
         // onRecreate
         else {
-            currentTag = savedInstanceState.getString("currentTag");
-            selectSideMenuItemByTag(currentTag);
+            selectSideMenuItemByTag(savedInstanceState.getString("currentTag"));
         }
     }
 
     private void initToolbarAndDrawerLayout() {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        // 这一个无奈的 bug 导致的
         toolbar.setTitle("发现文章");
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // 联动两者
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
         actionBarDrawerToggle.syncState();
@@ -90,11 +93,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         findViewById(R.id.rl_left_setting).setOnClickListener(this);
     }
 
-    private void initFragment() {
+    private void initFirstFragment() {
 
-        selectSideMenuItemByTag(HOT);
-        addFragment(new HotFragment());
-        currentTag = HOT;
+        String tag = HOT;
+        addFragment(getFragmentByTag(tag));
+        selectSideMenuItemByTag(tag);
     }
 
     // ============================ onSaveInstanceState ============================
@@ -123,7 +126,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch (v.getId()) {
 
             case R.id.rl_left_article:
-                noOneProductThisModule();
+                onSideMenuItemClick(ARTICLE);
                 break;
 
             case R.id.rl_left_article_hot:
@@ -152,61 +155,53 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
-    // ============================ other functions ============================
+    // ============================ high-level functions ============================
 
     private void onSideMenuItemClick(String tag) {
 
         replaceFragment(getFragmentByTag(tag));
         drawerLayout.closeDrawers();
-        unSelectCurrentSideMenuItem();
         selectSideMenuItemByTag(tag);
+    }
+
+    private void selectSideMenuItemByTag(String tag) {
+
+        unSelectCurrentSideMenuItem();
+
+        // 设置背景色，图标，文字和标题
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(getRelativeLayoutIdByTag(tag));
+        relativeLayout.setBackgroundColor(getResources().getColor(R.color.green));
+        ImageView imageView = (ImageView) relativeLayout.getChildAt(0);
+        imageView.setBackgroundResource(getIconResourceByTag(tag, true));
+        TextView textView = (TextView) relativeLayout.getChildAt(1);
+        textView.setTextColor(getResources().getColor(R.color.white));
+        toolbar.setTitle(getToolbarTitleByTag(tag));
+
         currentTag = tag;
     }
 
     private void unSelectCurrentSideMenuItem() {
 
+        if (currentTag == null) {
+            return;
+        }
+
+        // 还原背景，图标，文字和标题
         RelativeLayout current = (RelativeLayout) findViewById(getRelativeLayoutIdByTag(currentTag));
         current.setBackgroundResource(R.drawable.drawer_menu_selector);
         ImageView imageView = (ImageView) current.getChildAt(0);
-        imageView.setBackgroundResource(getBackgroundResourceByTag(currentTag, false));
+        imageView.setBackgroundResource(getIconResourceByTag(currentTag, false));
         TextView textView = (TextView) current.getChildAt(1);
         textView.setTextColor(getResources().getColor(R.color.black));
-
-        toolbar.setTitle(getTitleByTag(currentTag));
+        toolbar.setTitle(getToolbarTitleByTag(currentTag));
     }
 
-    private void selectSideMenuItemByTag(String tag) {
-
-        RelativeLayout relativeLayout = (RelativeLayout) findViewById(getRelativeLayoutIdByTag(tag));
-        relativeLayout.setBackgroundColor(getResources().getColor(R.color.green));
-        ImageView imageView = (ImageView) relativeLayout.getChildAt(0);
-        imageView.setBackgroundResource(getBackgroundResourceByTag(tag, true));
-        TextView textView = (TextView) relativeLayout.getChildAt(1);
-        textView.setTextColor(getResources().getColor(R.color.white));
-
-        toolbar.setTitle(getTitleByTag(tag));
-    }
-
-    private int getRelativeLayoutIdByTag(String tag) {
-
-        switch (tag) {
-            case HOT:
-                return R.id.rl_left_article_hot;
-            case TOPIC:
-                return R.id.rl_left_topic;
-            case SITE:
-                return R.id.rl_left_site;
-            case OFFLINE:
-                return R.id.rl_left_offline;
-            case SETTING:
-                return R.id.rl_left_setting;
-            default:
-                throw new RuntimeException("getRelativeLayoutIdByTag: wrong tag");
-        }
-    }
+    // ============================ byTag functions ============================
 
     private Fragment getFragmentByTag(String tag) {
         switch (tag) {
+            case ARTICLE:
+                return new ArticleFragment();
             case HOT:
                 return new HotFragment();
             case TOPIC:
@@ -222,30 +217,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
-    private void noOneProductThisModule() {
-
-        NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
-        dialogBuilder
-                .withTitle("提示")
-                .withMessage("该模块没人愿意开发。")
-                .show();
-    }
-
-    private void replaceFragment(Fragment fragment) {
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, fragment).commit();
-    }
-
-    private void addFragment(Fragment fragment) {
-
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, fragment).commit();
-    }
-
-    private int getBackgroundResourceByTag(String tag, Boolean selected) {
+    private int getIconResourceByTag(String tag, Boolean selected) {
 
         switch (tag) {
+            case ARTICLE:
+                return selected ? R.drawable.left_article_selected : R.drawable.left_article;
             case HOT:
                 return selected ? R.drawable.left_article_hot_selected : R.drawable.left_article_hot;
             case TOPIC:
@@ -261,9 +237,31 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
-    private String getTitleByTag(String tag) {
+    private int getRelativeLayoutIdByTag(String tag) {
 
         switch (tag) {
+            case ARTICLE:
+                return R.id.rl_left_article;
+            case HOT:
+                return R.id.rl_left_article_hot;
+            case TOPIC:
+                return R.id.rl_left_topic;
+            case SITE:
+                return R.id.rl_left_site;
+            case OFFLINE:
+                return R.id.rl_left_offline;
+            case SETTING:
+                return R.id.rl_left_setting;
+            default:
+                throw new RuntimeException("getRelativeLayoutIdByTag: wrong tag");
+        }
+    }
+
+    private String getToolbarTitleByTag(String tag) {
+
+        switch (tag) {
+            case ARTICLE:
+                return "推荐文章";
             case HOT:
                 return "发现文章";
             case TOPIC:
@@ -275,9 +273,32 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             case SETTING:
                 return "相关设置";
             default:
-                throw new RuntimeException("getTitleByTag: wrong tag");
+                throw new RuntimeException("getToolbarTitleByTag: wrong tag");
         }
 
+    }
+
+    // ============================ basic functions ============================
+
+    private void noOneProductThisModule() {
+
+        NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
+        dialogBuilder
+                .withTitle("提示")
+                .withMessage("该模块没人愿意开发。")
+                .show();
+    }
+
+    private void addFragment(Fragment fragment) {
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, fragment).commit();
+    }
+
+    private void replaceFragment(Fragment fragment) {
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment).commit();
     }
 
 }
