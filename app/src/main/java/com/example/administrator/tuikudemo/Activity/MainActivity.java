@@ -285,6 +285,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
         dialogBuilder
+                .withDialogColor("#1DE9B6")
                 .withEffect(Effectstype.Shake)
                 .withTitle(title)
                 .withMessage(message)
