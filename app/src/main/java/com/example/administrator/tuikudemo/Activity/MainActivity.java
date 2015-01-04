@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +23,9 @@ import com.example.administrator.tuikudemo.R;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
+import java.security.acl.Group;
+
+import de.keyboardsurfer.android.widget.crouton.Configuration;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
@@ -130,7 +134,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch (v.getId()) {
 
             case R.id.rl_left_article:
-                showCustomMessage();
+                showCustomMessage("hehe");
 //                onSideMenuItemClick(ARTICLE);
                 break;
 
@@ -147,7 +151,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 break;
 
             case R.id.rl_left_search:
-                showCustomDialog("提示","搜索功能不打算开发。");
+                showCustomDialog("提示", "搜索功能不打算开发。");
                 break;
 
             case R.id.rl_left_offline:
@@ -285,7 +289,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     // ============================ basic functions ============================
 
-    private void showCustomDialog(String title,String message) {
+    private void showCustomDialog(String title, String message) {
 
         NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
         dialogBuilder
@@ -308,9 +312,25 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 .replace(R.id.fragment_container, fragment).commit();
     }
 
-    private void showCustomMessage(){
+    private void showCustomMessage(String message) {
 
-        Crouton.makeText(this,"hehe",Style.INFO,R.id.croutonContainer).show();
+        ViewGroup root = (ViewGroup) getLayoutInflater().inflate(R.layout.crouton_custom_view, null);
+        TextView textView = (TextView) root.getChildAt(0);
+        textView.setText(message);
+
+        Configuration configuration = new Configuration.Builder().setDuration(1200).build();
+        Crouton crouton = Crouton.make(this, root, R.id.croutonContainer, configuration);
+        crouton.show();
+    }
+
+    // ============================ onDestroy ============================
+
+    @Override
+    protected void onDestroy() {
+        // Workaround until there's a way to detach the Activity from Crouton while
+        // there are still some in the Queue.
+        Crouton.clearCroutonsForActivity(this);
+        super.onDestroy();
     }
 
 }
