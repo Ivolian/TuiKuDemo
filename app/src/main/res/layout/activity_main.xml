@@ -1,32 +1,45 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_height="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:background="@color/white" />
-
-    <include layout="@layout/line" />
-
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawer"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:orientation="vertical">
 
-        <!-- Content -->
-        <FrameLayout
-            android:id="@+id/fragment_container"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="56dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:background="@color/white" />
 
-        <!-- Side Drawer -->
-        <include
-            android:id="@+id/drawer_view"
-            layout="@layout/side_drawer" />
+        <include layout="@layout/line" />
 
-    </android.support.v4.widget.DrawerLayout>
+        <android.support.v4.widget.DrawerLayout
+            android:id="@+id/drawer"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
 
-</LinearLayout>
+            <!-- Content -->
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- Side Drawer -->
+            <include
+                android:id="@+id/drawer_view"
+                layout="@layout/side_drawer" />
+
+        </android.support.v4.widget.DrawerLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/croutonContainer"
+        android:orientation="vertical"
+        android:layout_marginTop="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@android:color/transparent"/>
+
+</FrameLayout>

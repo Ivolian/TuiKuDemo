@@ -22,6 +22,9 @@ import com.example.administrator.tuikudemo.R;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -127,7 +130,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch (v.getId()) {
 
             case R.id.rl_left_article:
-                onSideMenuItemClick(ARTICLE);
+                showCustomMessage();
+//                onSideMenuItemClick(ARTICLE);
                 break;
 
             case R.id.rl_left_article_hot:
@@ -302,6 +306,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment).commit();
+    }
+
+    private void showCustomMessage(){
+
+        Crouton.makeText(this,"hehe",Style.INFO,R.id.croutonContainer).show();
     }
 
 }
