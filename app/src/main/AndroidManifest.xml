@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.tuikudemo">
 
@@ -17,9 +16,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Activity.MoreSettingActivity" />
+
         <activity
-            android:name=".Activity.MoreSettingActivity"
-            android:label="更多设置" />
+            android:name=".Activity.FeedbackActivity"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 

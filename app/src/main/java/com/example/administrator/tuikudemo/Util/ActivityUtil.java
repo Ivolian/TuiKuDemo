@@ -8,7 +8,7 @@ import com.example.administrator.tuikudemo.R;
 
 public class ActivityUtil {
 
-    public static void startActivityWithAnimation(Activity from, Class to) {
+    public static void startActivityWithAnim(Activity from, Class to) {
 
         Intent intent = new Intent(from, to);
         from.startActivity(intent);
