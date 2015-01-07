@@ -12,15 +12,15 @@
         android:layout_height="wrap_content"
         android:text="清除图片缓存"
         android:textSize="17sp"
-        android:textColor="@drawable/setting_menu_font_style"
-        android:background="@drawable/setting_menu_selector"
+        android:textColor="@color/black"
+        android:background="@color/white"
         android:padding="10dp" />
 
     <RelativeLayout
         android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/setting_menu_selector"
+        android:background="@color/white"
         android:padding="10dp"
         android:layout_marginTop="2dp">
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="白天模式"
             android:textSize="17sp"
-            android:textColor="@drawable/setting_menu_font_style"
+            android:textColor="@color/black"
             android:id="@+id/textView" />
 
         <ImageView
@@ -46,7 +46,7 @@
         android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/setting_menu_selector"
+        android:background="@color/white"
         android:padding="10dp"
         android:layout_marginTop="2dp">
 
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:text="分享设置"
             android:textSize="17sp"
-            android:textColor="@drawable/setting_menu_font_style" />
+            android:textColor="@color/black" />
 
         <ImageView
             android:layout_width="20dp"
@@ -66,6 +66,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_more_setting"
         android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
