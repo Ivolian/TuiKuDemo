@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:background="@color/white" />
 
+    <include layout="@layout/line" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

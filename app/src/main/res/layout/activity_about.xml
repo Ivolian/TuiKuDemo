@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        android:background="@color/white" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo_trans"
+            android:layout_marginTop="35dp" />
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_margin="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:text="这是一个模仿推酷的Demo，作者是伟大的我。了解更多，请访问推酷官网。" />
+
+        <TextView
+            android:layout_marginLeft="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="http://www.tuicool.com"
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:textColorLink="@color/green" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

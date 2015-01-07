@@ -134,8 +134,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch (v.getId()) {
 
             case R.id.rl_left_article:
-                showCustomMessage("hehe");
-//                onSideMenuItemClick(ARTICLE);
+                onSideMenuItemClick(ARTICLE);
                 break;
 
             case R.id.rl_left_article_hot:

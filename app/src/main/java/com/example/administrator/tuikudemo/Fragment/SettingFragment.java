@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.administrator.tuikudemo.Activity.AboutActivity;
 import com.example.administrator.tuikudemo.Activity.FeedbackActivity;
 import com.example.administrator.tuikudemo.Activity.MoreSettingActivity;
 import com.example.administrator.tuikudemo.R;
@@ -22,7 +23,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         rootView = inflater.inflate(R.layout.fragment_setting, container, false);
 
         addOnClickListeners(
-                R.id.rl_more_setting, R.id.rl_feedback
+                R.id.rl_more_setting, R.id.rl_feedback, R.id.rl_about
         );
 
         return rootView;
@@ -47,6 +48,9 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
             case R.id.rl_feedback:
                 ActivityUtil.startActivityWithAnim(getActivity(), FeedbackActivity.class);
                 break;
+
+            case R.id.rl_about:
+                ActivityUtil.startActivityWithAnim(getActivity(), AboutActivity.class);
         }
     }
 

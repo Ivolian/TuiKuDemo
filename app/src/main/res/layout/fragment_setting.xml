@@ -2,7 +2,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="15dp"
+    android:paddingTop="14dp"
     android:paddingLeft="13dp"
     android:paddingRight="13dp">
 
@@ -199,9 +199,10 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_about"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/setting_menu_selector"
         android:padding="10dp"
         android:layout_marginTop="2dp">
 
@@ -210,7 +211,7 @@
             android:layout_height="wrap_content"
             android:text="关于我们"
             android:textSize="17sp"
-            android:textColor="@color/black" />
+            android:textColor="@drawable/setting_menu_font_style" />
 
         <ImageView
             android:layout_width="20dp"
