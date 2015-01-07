@@ -32,8 +32,7 @@
                 android:text="仅WIFI时加载图片"
                 android:layout_centerVertical="true"
                 android:textSize="17sp"
-                android:textColor="@color/black"
-               />
+                android:textColor="@color/black" />
 
             <com.example.administrator.mylibrary.ToggleButton
                 android:layout_width="52dp"
@@ -127,6 +126,30 @@
                 toggle:offBorderColor="#eee"
                 toggle:borderWidth="0.5dp"
                 android:layout_height="28dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正文字号大小调整"
+                android:textSize="17sp"
+                android:textColor="@color/black" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_height="30dp"
+                android:layout_width="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true" />
 

@@ -4,4 +4,12 @@
     <string name="drawer_open">drawer_open</string>
     <string name="drawer_close">drawer_close</string>
 
+    <string-array name="Font">
+        <item>最小</item>
+        <item>偏小</item>
+        <item>中等</item>
+        <item>偏大</item>
+        <item>最大</item>
+    </string-array>
+
 </resources>
