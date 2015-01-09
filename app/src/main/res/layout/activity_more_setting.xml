@@ -37,13 +37,14 @@
                 android:textColor="@color/black" />
 
             <com.example.administrator.mylibrary.ToggleButton
-                android:layout_width="52dp"
+                android:layout_width="55dp"
                 toggle:onColor="@color/green"
                 toggle:offColor="#fff"
                 toggle:spotColor="#fff"
                 toggle:offBorderColor="#eee"
                 toggle:borderWidth="0.5dp"
-                android:layout_height="28dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true" />
 
@@ -61,17 +62,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="WIFI时智能下载文章"
+                android:layout_centerVertical="true"
                 android:textSize="17sp"
                 android:textColor="@color/black" />
 
             <com.example.administrator.mylibrary.ToggleButton
-                android:layout_width="52dp"
+                android:layout_width="55dp"
                 toggle:onColor="@color/green"
                 toggle:offColor="#fff"
                 toggle:spotColor="#fff"
                 toggle:offBorderColor="#eee"
                 toggle:borderWidth="0.5dp"
-                android:layout_height="28dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true" />
 
@@ -89,17 +92,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="正文左右滑动翻页"
+                android:layout_centerVertical="true"
                 android:textSize="17sp"
                 android:textColor="@color/black" />
 
             <com.example.administrator.mylibrary.ToggleButton
-                android:layout_width="52dp"
+                android:layout_width="55dp"
                 toggle:onColor="@color/green"
                 toggle:offColor="#fff"
                 toggle:spotColor="#fff"
                 toggle:offBorderColor="#eee"
                 toggle:borderWidth="0.5dp"
-                android:layout_height="28dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true" />
 
@@ -117,17 +122,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="正文右滑出评论页面"
+                android:layout_centerVertical="true"
                 android:textSize="17sp"
                 android:textColor="@color/black" />
 
             <com.example.administrator.mylibrary.ToggleButton
-                android:layout_width="52dp"
+                android:layout_width="55dp"
                 toggle:onColor="@color/green"
                 toggle:offColor="#fff"
                 toggle:spotColor="#fff"
                 toggle:offBorderColor="#eee"
                 toggle:borderWidth="0.5dp"
-                android:layout_height="28dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true" />
 
@@ -152,8 +159,8 @@
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_height="30dp"
-                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true" />
 

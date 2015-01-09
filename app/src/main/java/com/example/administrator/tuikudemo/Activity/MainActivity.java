@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.tuikudemo.Fragment.ArticleFragment;
 import com.example.administrator.tuikudemo.Fragment.HotFragment;
@@ -23,11 +24,8 @@ import com.example.administrator.tuikudemo.R;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
-import java.security.acl.Group;
-
 import de.keyboardsurfer.android.widget.crouton.Configuration;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
@@ -52,6 +50,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Toolbar toolbar;
 
     DrawerLayout drawerLayout;
+
+    long exitTime;
 
     // ============================ onCreate ============================
 
@@ -108,6 +108,20 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         selectSideMenuItemByTag(tag);
     }
 
+    // ============================ onBackPressed ============================
+
+    @Override
+    public void onBackPressed() {
+
+        if((System.currentTimeMillis()-exitTime) > 2000){
+            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);
+        }
+    }
+
     // ============================ onSaveInstanceState ============================
 
     @Override
@@ -150,7 +164,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 break;
 
             case R.id.rl_left_search:
-                showCustomDialog("提示", "搜索功能不打算开发。");
+                showDialogMessage("提示", "搜索功能不打算开发。");
                 break;
 
             case R.id.rl_left_offline:
@@ -288,17 +302,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     // ============================ basic functions ============================
 
-    private void showCustomDialog(String title, String message) {
-
-        NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
-        dialogBuilder
-                .withDialogColor("#1DE9B6")
-                .withEffect(Effectstype.Shake)
-                .withTitle(title)
-                .withMessage(message)
-                .show();
-    }
-
     private void addFragment(Fragment fragment) {
 
         getSupportFragmentManager().beginTransaction()
@@ -311,7 +314,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 .replace(R.id.fragment_container, fragment).commit();
     }
 
-    private void showCustomMessage(String message) {
+    private void showDialogMessage(String title, String message) {
+
+        NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
+        dialogBuilder
+                .withDialogColor("#1DE9B6")
+                .withEffect(Effectstype.Shake)
+                .withTitle(title)
+                .withMessage(message)
+                .show();
+    }
+
+    private void showCroutonMessage(String message) {
 
         ViewGroup root = (ViewGroup) getLayoutInflater().inflate(R.layout.crouton_custom_view, null);
         TextView textView = (TextView) root.getChildAt(0);

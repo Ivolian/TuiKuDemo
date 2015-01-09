@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:textSize="17sp"
             android:textColor="@color/black"
-            android:text="这是一个模仿推酷的Demo，作者是伟大的我。了解更多，请访问推酷官网。" />
+            android:text="这是一个模仿推酷的Demo。了解更多，请访问推酷官网。" />
 
         <TextView
             android:layout_marginLeft="14dp"
