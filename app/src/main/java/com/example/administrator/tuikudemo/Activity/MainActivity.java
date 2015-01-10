@@ -1,5 +1,6 @@
 package com.example.administrator.tuikudemo.Activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +22,11 @@ import com.example.administrator.tuikudemo.Fragment.SettingFragment;
 import com.example.administrator.tuikudemo.Fragment.SiteFragment;
 import com.example.administrator.tuikudemo.Fragment.TopicFragment;
 import com.example.administrator.tuikudemo.R;
+import com.github.johnpersano.supertoasts.SuperActivityToast;
+import com.github.johnpersano.supertoasts.SuperCardToast;
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
+import com.github.johnpersano.supertoasts.util.Wrappers;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
@@ -52,6 +58,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     DrawerLayout drawerLayout;
 
     long exitTime;
+
 
     // ============================ onCreate ============================
 
@@ -113,8 +120,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
 
-        if((System.currentTimeMillis()-exitTime) > 2000){
-            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            showToastMessage("再按一次退出程序");
             exitTime = System.currentTimeMillis();
         } else {
             finish();
@@ -334,6 +341,15 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         Configuration configuration = new Configuration.Builder().setDuration(1200).build();
         Crouton crouton = Crouton.make(this, root, R.id.croutonContainer, configuration);
         crouton.show();
+    }
+
+    private void showToastMessage(String message) {
+
+        SuperToast superToast = new SuperToast(this);
+        superToast.setText(message);
+        superToast.setBackground(SuperToast.Background.GRAY);
+        superToast.setTextColor(Color.WHITE);
+        superToast.show();
     }
 
     // ============================ onDestroy ============================
