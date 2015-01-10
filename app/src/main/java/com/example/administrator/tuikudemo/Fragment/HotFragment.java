@@ -29,7 +29,7 @@ public class HotFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        inflater.inflate(R.menu.menu_hot_fragment, menu);
+        inflater.inflate(R.menu.hot_fragment_menu, menu);
     }
 
 }

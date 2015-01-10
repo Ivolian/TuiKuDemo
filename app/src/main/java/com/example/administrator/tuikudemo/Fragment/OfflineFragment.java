@@ -37,7 +37,7 @@ public class OfflineFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        inflater.inflate(R.menu.menu_offline_fragment, menu);
+        inflater.inflate(R.menu.offline_fragment_menu, menu);
     }
 
 }

@@ -20,7 +20,7 @@ public class MoreSettingActivity extends GeneralActivity {
 
     private void initSpinner() {
 
-        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array.Font,
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array.font_size,
                 android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setAdapter(arrayAdapter);

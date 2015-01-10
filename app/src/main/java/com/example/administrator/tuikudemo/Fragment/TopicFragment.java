@@ -29,7 +29,7 @@ public class TopicFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        inflater.inflate(R.menu.menu_topic_fragment, menu);
+        inflater.inflate(R.menu.topic_fragment_menu, menu);
     }
 
 }
