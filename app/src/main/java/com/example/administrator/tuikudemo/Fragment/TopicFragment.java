@@ -4,10 +4,12 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -50,28 +52,24 @@ public class TopicFragment extends Fragment {
 
     RecyclerView recyclerView;
 
+    int column = 3;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_topic, container, false);
-
-        initRecyclerView();
+        recyclerView.setLayoutManager(getGridLayoutManager());
+        // 隐藏滚动条
+        recyclerView.setVerticalScrollBarEnabled(false);
+        TopicItemViewAdapter topicItemViewAdapter = new TopicItemViewAdapter(getActivity(), getTopicList());
+        recyclerView.setAdapter(topicItemViewAdapter);
 
         return recyclerView;
     }
 
-    private void initRecyclerView() {
-
-        recyclerView.setLayoutManager(getGridLayoutManager());
-        // 隐藏滚动条
-        recyclerView.setVerticalScrollBarEnabled(false);
-        TopicItemViewAdapter topicItemViewAdapter = new TopicItemViewAdapter(getTopicList());
-        recyclerView.setAdapter(topicItemViewAdapter);
-    }
-
     private GridLayoutManager getGridLayoutManager() {
 
-        return new GridLayoutManager(getActivity(), 3);
+        return new GridLayoutManager(getActivity(), column);
     }
 
     @Override
@@ -85,6 +83,20 @@ public class TopicFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
         inflater.inflate(R.menu.topic_fragment_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.change_layout:
+                changeRecyclerViewLayout();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private List<Topic> getTopicList() {
@@ -107,5 +119,12 @@ public class TopicFragment extends Fragment {
         return colors[new Random().nextInt(colors.length)];
     }
 
+    private void changeRecyclerViewLayout() {
+
+        int position = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
+        column = (column == 3 ? 2 : 3);
+        recyclerView.setLayoutManager(getGridLayoutManager());
+        recyclerView.scrollToPosition(position);
+    }
 
 }
