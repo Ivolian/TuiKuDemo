@@ -1,5 +1,6 @@
 package com.example.administrator.tuikudemo.Activity;
 
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,8 @@ import com.example.administrator.tuikudemo.R;
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
+
+import java.util.Random;
 
 import de.keyboardsurfer.android.widget.crouton.Configuration;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -344,5 +347,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         Crouton.clearCroutonsForActivity(this);
         super.onDestroy();
     }
+
 
 }
