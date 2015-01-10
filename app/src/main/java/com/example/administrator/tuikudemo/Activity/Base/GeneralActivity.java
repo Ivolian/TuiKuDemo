@@ -1,4 +1,4 @@
-package com.example.administrator.tuikudemo.Activity;
+package com.example.administrator.tuikudemo.Activity.Base;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

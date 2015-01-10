@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.administrator.tuikudemo.Activity.Base.GeneralActivity;
 import com.example.administrator.tuikudemo.R;
 
 
