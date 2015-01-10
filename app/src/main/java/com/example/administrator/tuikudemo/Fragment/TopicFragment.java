@@ -24,7 +24,9 @@ import java.util.Random;
 
 public class TopicFragment extends Fragment {
 
-    int[] resIds = new int[]{
+    // ======================== 常量 ========================
+
+    static int[] resIds = new int[]{
             R.drawable.i1,
             R.drawable.i2,
             R.drawable.i3,
@@ -36,8 +38,8 @@ public class TopicFragment extends Fragment {
             R.drawable.i9
     };
 
-    Resources resources = Resources.getSystem();
-    int[] colors = new int[]{
+    static Resources resources = Resources.getSystem();
+    static int[] colors = new int[]{
             resources.getColor(android.R.color.holo_blue_bright),
             resources.getColor(android.R.color.holo_blue_dark),
             resources.getColor(android.R.color.holo_blue_light),
@@ -50,27 +52,26 @@ public class TopicFragment extends Fragment {
             resources.getColor(android.R.color.holo_red_light)
     };
 
+    // ======================== fields ========================
+
     RecyclerView recyclerView;
 
-    int column = 3;
+    int gridColumn = 3;
+
+    // ======================== onCreateView ========================
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_topic, container, false);
         recyclerView.setLayoutManager(getGridLayoutManager());
-        // 隐藏滚动条
-        recyclerView.setVerticalScrollBarEnabled(false);
-        TopicItemViewAdapter topicItemViewAdapter = new TopicItemViewAdapter(getActivity(), getTopicList());
-        recyclerView.setAdapter(topicItemViewAdapter);
+        recyclerView.setVerticalScrollBarEnabled(false); // 隐藏滚动条
+        recyclerView.setAdapter(new TopicItemViewAdapter(getActivity(), getTopicList()));
 
         return recyclerView;
     }
 
-    private GridLayoutManager getGridLayoutManager() {
-
-        return new GridLayoutManager(getActivity(), column);
-    }
+    // ======================== menu ========================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -99,32 +100,41 @@ public class TopicFragment extends Fragment {
         }
     }
 
+    // ======================== high-level functions ========================
+
     private List<Topic> getTopicList() {
 
         List<Topic> topicList = new ArrayList<>();
-        for (int i = 0; i != 20; i++) {
+        for (int i = 0; i != 4; i++) {
             topicList.add(new Topic(i + 1 + "", getRandomColor(), getRandomResId()));
         }
 
         return topicList;
     }
 
-    private int getRandomResId() {
+    private void changeRecyclerViewLayout() {
+
+        int position = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
+        gridColumn = (gridColumn == 3 ? 2 : 3);
+        recyclerView.setLayoutManager(getGridLayoutManager());
+        recyclerView.scrollToPosition(position);
+    }
+
+    // ======================== basic functions ========================
+
+    private GridLayoutManager getGridLayoutManager() {
+
+        return new GridLayoutManager(getActivity(), gridColumn);
+    }
+
+    public static int getRandomResId() {
 
         return resIds[new Random().nextInt(resIds.length)];
     }
 
-    public int getRandomColor() {
+    public static int getRandomColor() {
 
         return colors[new Random().nextInt(colors.length)];
-    }
-
-    private void changeRecyclerViewLayout() {
-
-        int position = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
-        column = (column == 3 ? 2 : 3);
-        recyclerView.setLayoutManager(getGridLayoutManager());
-        recyclerView.scrollToPosition(position);
     }
 
 }

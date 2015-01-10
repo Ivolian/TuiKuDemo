@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.example.administrator.tuikudemo.Fragment.TopicFragment;
 import com.example.administrator.tuikudemo.Model.Topic;
 import com.example.administrator.tuikudemo.R;
 
@@ -21,25 +21,32 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TopicItemViewAdapter extends RecyclerView.Adapter<TopicItemViewAdapter.ViewHolder> {
 
+    // ======================== fields ========================
+
     Context context;
 
     List<Topic> topicList;
 
-    public TopicItemViewAdapter(Context context,List<Topic> topicList) {
+    // ======================== constructor ========================
+
+    public TopicItemViewAdapter(Context context, List<Topic> topicList) {
 
         this.context = context;
         topicList.add(new Topic("", Color.WHITE, R.drawable.site_plus));
         this.topicList = topicList;
     }
 
+    // ======================== onCreateViewHolder ========================
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-        View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.topic_item_view, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.topic_item_view, viewGroup, false);
 
         return new ViewHolder(v);
     }
+
+    // ======================== onBindViewHolder ========================
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
@@ -54,11 +61,11 @@ public class TopicItemViewAdapter extends RecyclerView.Adapter<TopicItemViewAdap
         return topicList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    // ======================== ViewHolder ========================
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public CardView cardView;
-
-        public TextView textView;
 
         public CircleImageView circleImageView;
 
@@ -66,39 +73,35 @@ public class TopicItemViewAdapter extends RecyclerView.Adapter<TopicItemViewAdap
             super(v);
 
             cardView = (CardView) v.findViewById(R.id.cardView);
-            textView = (TextView) cardView.findViewById(R.id.textView);
             circleImageView = (CircleImageView) cardView.findViewById(R.id.circleImageView);
 
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    // We need to post a Runnable to show the popup to make sure that the PopupMenu is
-                    // correctly positioned. The reason being that the view may change position before the
-                    // PopupMenu is shown.
-                    v.post(new Runnable() {
-                        @Override
-                        public void run() {
+            cardView.setOnClickListener(this);
+        }
 
-                            PopupMenu popupMenu = new PopupMenu(context, v);
-                            popupMenu.inflate(R.menu.popup);
-                            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                                @Override
-                                public boolean onMenuItemClick(MenuItem menuItem) {
-                                    switch (menuItem.getItemId()) {
-                                        case R.id.menu_remove:
-                                            int position = getPosition();
-                                            TopicItemViewAdapter.this.notifyItemRemoved(position);
-                                            topicList.remove(position);
-                                            return true;
-                                    }
-                                    return false;
-                                }
-                            });
-                            popupMenu.show();
+        @Override
+        public void onClick(View v) {
+
+            final int position = getPosition();
+            if (position + 1 == topicList.size()) {
+                topicList.add(position, new Topic("", TopicFragment.getRandomColor(), TopicFragment.getRandomResId()));
+                TopicItemViewAdapter.this.notifyItemInserted(position);
+            } else {
+                PopupMenu popupMenu = new PopupMenu(context, v);
+                popupMenu.inflate(R.menu.popup);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.menu_remove:
+                                TopicItemViewAdapter.this.notifyItemRemoved(position);
+                                topicList.remove(position);
+                                return true;
                         }
-                    });
-                }
-            });
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
         }
     }
 
