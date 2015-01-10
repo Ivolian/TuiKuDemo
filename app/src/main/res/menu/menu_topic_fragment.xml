@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="订阅发现"
+        android:orderInCategory="10"
+        app:showAsAction="never" />
+
+    <item
+        android:title="订阅管理"
+        android:orderInCategory="20"
+        app:showAsAction="never" />
+
+</menu>

@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.administrator.tuikudemo.Fragment.ArticleFragment;
 import com.example.administrator.tuikudemo.Fragment.HotFragment;
@@ -22,11 +21,7 @@ import com.example.administrator.tuikudemo.Fragment.SettingFragment;
 import com.example.administrator.tuikudemo.Fragment.SiteFragment;
 import com.example.administrator.tuikudemo.Fragment.TopicFragment;
 import com.example.administrator.tuikudemo.R;
-import com.github.johnpersano.supertoasts.SuperActivityToast;
-import com.github.johnpersano.supertoasts.SuperCardToast;
 import com.github.johnpersano.supertoasts.SuperToast;
-import com.github.johnpersano.supertoasts.util.Style;
-import com.github.johnpersano.supertoasts.util.Wrappers;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
@@ -51,14 +46,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     // ============================ fields ============================
 
-    String currentTag = null;
+    String currentTag;
 
     Toolbar toolbar;
 
     DrawerLayout drawerLayout;
 
     long exitTime;
-
 
     // ============================ onCreate ============================
 
@@ -136,15 +130,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         super.onSaveInstanceState(outState);
         outState.putString("currentTag", currentTag);
-    }
-
-    // ============================ onCreateOptionsMenu ============================
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     // ============================ onClick ============================
