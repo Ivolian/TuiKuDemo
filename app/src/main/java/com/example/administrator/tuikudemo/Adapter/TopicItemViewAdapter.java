@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.administrator.tuikudemo.Fragment.TopicFragment;
+import com.example.administrator.tuikudemo.Helper.TopicFragmentHelper;
 import com.example.administrator.tuikudemo.Model.Topic;
 import com.example.administrator.tuikudemo.R;
 
@@ -32,7 +32,7 @@ public class TopicItemViewAdapter extends RecyclerView.Adapter<TopicItemViewAdap
     public TopicItemViewAdapter(Context context, List<Topic> topicList) {
 
         this.context = context;
-        topicList.add(new Topic("", Color.WHITE, R.drawable.site_plus));
+        topicList.add(new Topic(Color.WHITE, R.drawable.site_plus));
         this.topicList = topicList;
     }
 
@@ -63,7 +63,7 @@ public class TopicItemViewAdapter extends RecyclerView.Adapter<TopicItemViewAdap
 
     // ======================== ViewHolder ========================
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
         public CardView cardView;
 
@@ -81,28 +81,27 @@ public class TopicItemViewAdapter extends RecyclerView.Adapter<TopicItemViewAdap
         @Override
         public void onClick(View v) {
 
-            final int position = getPosition();
+            int position = getPosition();
             if (position + 1 == topicList.size()) {
-                topicList.add(position, new Topic("", TopicFragment.getRandomColor(), TopicFragment.getRandomResId()));
+                topicList.add(position, TopicFragmentHelper.getRandomTopic());
                 TopicItemViewAdapter.this.notifyItemInserted(position);
             } else {
                 PopupMenu popupMenu = new PopupMenu(context, v);
                 popupMenu.inflate(R.menu.popup);
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        switch (menuItem.getItemId()) {
-                            case R.id.menu_remove:
-                                TopicItemViewAdapter.this.notifyItemRemoved(position);
-                                topicList.remove(position);
-                                return true;
-                        }
-                        return false;
-                    }
-                });
+                popupMenu.setOnMenuItemClickListener(this);
                 popupMenu.show();
             }
         }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+
+            int position = getPosition();
+            TopicItemViewAdapter.this.notifyItemRemoved(position);
+            topicList.remove(position);
+            return true;
+        }
+
     }
 
 }

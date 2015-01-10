@@ -2,24 +2,13 @@ package com.example.administrator.tuikudemo.Model;
 
 public class Topic {
 
-    private String text;
-
     private int color;
 
     private int resId;
 
-    public Topic(String text, int color, int resId) {
-        this.text = text;
+    public Topic(int color, int resId) {
         this.color = color;
         this.resId = resId;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public int getColor() {
@@ -37,4 +26,5 @@ public class Topic {
     public void setResId(int resId) {
         this.resId = resId;
     }
+
 }

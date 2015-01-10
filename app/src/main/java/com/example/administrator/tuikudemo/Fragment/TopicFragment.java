@@ -1,6 +1,5 @@
 package com.example.administrator.tuikudemo.Fragment;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,43 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.tuikudemo.Adapter.TopicItemViewAdapter;
+import com.example.administrator.tuikudemo.Helper.TopicFragmentHelper;
 import com.example.administrator.tuikudemo.Model.Topic;
 import com.example.administrator.tuikudemo.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class TopicFragment extends Fragment {
-
-    // ======================== 常量 ========================
-
-    static int[] resIds = new int[]{
-            R.drawable.i1,
-            R.drawable.i2,
-            R.drawable.i3,
-            R.drawable.i4,
-            R.drawable.i5,
-            R.drawable.i6,
-            R.drawable.i7,
-            R.drawable.i8,
-            R.drawable.i9
-    };
-
-    static Resources resources = Resources.getSystem();
-    static int[] colors = new int[]{
-            resources.getColor(android.R.color.holo_blue_bright),
-            resources.getColor(android.R.color.holo_blue_dark),
-            resources.getColor(android.R.color.holo_blue_light),
-            resources.getColor(android.R.color.holo_green_dark),
-            resources.getColor(android.R.color.holo_green_light),
-            resources.getColor(android.R.color.holo_orange_dark),
-            resources.getColor(android.R.color.holo_orange_light),
-            resources.getColor(android.R.color.holo_purple),
-            resources.getColor(android.R.color.holo_red_dark),
-            resources.getColor(android.R.color.holo_red_light)
-    };
 
     // ======================== fields ========================
 
@@ -66,7 +37,7 @@ public class TopicFragment extends Fragment {
         recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_topic, container, false);
         recyclerView.setLayoutManager(getGridLayoutManager());
         recyclerView.setVerticalScrollBarEnabled(false); // 隐藏滚动条
-        recyclerView.setAdapter(new TopicItemViewAdapter(getActivity(), getTopicList()));
+        recyclerView.setAdapter(new TopicItemViewAdapter(getActivity(), getRandomTopicList()));
 
         return recyclerView;
     }
@@ -100,13 +71,13 @@ public class TopicFragment extends Fragment {
         }
     }
 
-    // ======================== high-level functions ========================
+    // ======================== other functions ========================
 
-    private List<Topic> getTopicList() {
+    private List<Topic> getRandomTopicList() {
 
         List<Topic> topicList = new ArrayList<>();
         for (int i = 0; i != 4; i++) {
-            topicList.add(new Topic(i + 1 + "", getRandomColor(), getRandomResId()));
+            topicList.add(TopicFragmentHelper.getRandomTopic());
         }
 
         return topicList;
@@ -120,21 +91,9 @@ public class TopicFragment extends Fragment {
         recyclerView.scrollToPosition(position);
     }
 
-    // ======================== basic functions ========================
-
     private GridLayoutManager getGridLayoutManager() {
 
         return new GridLayoutManager(getActivity(), gridColumn);
-    }
-
-    public static int getRandomResId() {
-
-        return resIds[new Random().nextInt(resIds.length)];
-    }
-
-    public static int getRandomColor() {
-
-        return colors[new Random().nextInt(colors.length)];
     }
 
 }
