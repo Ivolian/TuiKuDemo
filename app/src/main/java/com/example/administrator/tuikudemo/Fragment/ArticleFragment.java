@@ -47,6 +47,4 @@ public class ArticleFragment extends Fragment {
         imageView.setImageDrawable(drawable);
     }
 
-
-
 }

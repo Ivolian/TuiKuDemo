@@ -7,7 +7,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -78,10 +77,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private void initToolbarAndDrawerLayout() {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        // 这一个无奈的 bug 导致的
-        toolbar.setTitle("");
-
+        toolbar.setTitle("");  // 这一个无奈的 bug
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -292,7 +288,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     }
 
-    // ============================ basic functions ============================
+    // ============================ fragment functions ============================
 
     private void addFragment(Fragment fragment) {
 
@@ -305,6 +301,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment).commit();
     }
+
+    // ============================ message functions ============================
 
     private void showDialogMessage(String title, String message) {
 
