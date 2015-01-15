@@ -6,9 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.administrator.tuikudemo.Activity.AboutActivity;
-import com.example.administrator.tuikudemo.Activity.FeedbackActivity;
-import com.example.administrator.tuikudemo.Activity.MoreSettingActivity;
+import com.example.administrator.tuikudemo.activity.AboutActivity;
+import com.example.administrator.tuikudemo.activity.FeedbackActivity;
+import com.example.administrator.tuikudemo.activity.MoreSettingActivity;
 import com.example.administrator.tuikudemo.R;
 import com.example.administrator.tuikudemo.Util.ActivityUtil;
 
