@@ -6,7 +6,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".Activity.MainActivity"
             android:label="推酷Demo"
             android:icon="@drawable/launcher">
             <intent-filter>
@@ -16,13 +16,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.MoreSettingActivity" />
+        <activity android:name=".Activity.MoreSettingActivity" />
 
         <activity
-            android:name=".activity.FeedbackActivity"
+            android:name=".Activity.FeedbackActivity"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name=".activity.AboutActivity" />
+        <activity android:name=".Activity.AboutActivity" />
 
     </application>
 

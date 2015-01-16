@@ -1,10 +1,11 @@
 package com.example.administrator.tuikudemo.Model;
 
+
 public class Topic {
 
-    private int color;
+    int color;
 
-    private int resId;
+    int resId;
 
     public Topic(int color, int resId) {
         this.color = color;

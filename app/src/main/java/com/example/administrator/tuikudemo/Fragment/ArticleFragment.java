@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.administrator.tuikudemo.R;
 
+
 public class ArticleFragment extends Fragment {
 
     View rootView;

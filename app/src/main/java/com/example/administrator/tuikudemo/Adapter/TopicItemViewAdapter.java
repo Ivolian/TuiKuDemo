@@ -32,8 +32,9 @@ public class TopicItemViewAdapter extends RecyclerView.Adapter<TopicItemViewAdap
     public TopicItemViewAdapter(Context context, List<Topic> topicList) {
 
         this.context = context;
-        topicList.add(new Topic(Color.WHITE, R.drawable.site_plus));
         this.topicList = topicList;
+        // 添加末尾项
+        this.topicList.add(new Topic(Color.WHITE, R.drawable.site_plus));
     }
 
     // ======================== onCreateViewHolder ========================

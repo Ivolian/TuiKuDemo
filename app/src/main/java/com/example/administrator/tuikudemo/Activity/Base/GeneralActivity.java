@@ -17,14 +17,6 @@ public class GeneralActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
     }
 
-    final protected void initToolbar(String title) {
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -43,6 +35,14 @@ public class GeneralActivity extends ActionBarActivity {
     public void onBackPressed() {
 
         ActivityUtil.finishActivityWithAnim(this);
+    }
+
+    final protected void initToolbar(String toolbarTitle) {
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(toolbarTitle);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 }

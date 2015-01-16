@@ -16,6 +16,7 @@ public class MoreSettingActivity extends GeneralActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_setting);
         initToolbar("更多设置");
+
         initSpinner();
     }
 

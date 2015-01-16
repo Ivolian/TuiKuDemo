@@ -1,9 +1,8 @@
 package com.example.administrator.tuikudemo.Helper;
 
-import android.content.res.Resources;
-
 import com.example.administrator.tuikudemo.Model.Topic;
 import com.example.administrator.tuikudemo.R;
+import com.example.administrator.tuikudemo.Util.ColorUtil;
 
 import java.util.Random;
 
@@ -22,33 +21,32 @@ public class TopicFragmentHelper {
             R.drawable.i9
     };
 
-    static Resources resources = Resources.getSystem();
     static int[] colors = new int[]{
-            resources.getColor(android.R.color.holo_blue_bright),
-            resources.getColor(android.R.color.holo_blue_dark),
-            resources.getColor(android.R.color.holo_blue_light),
-            resources.getColor(android.R.color.holo_green_dark),
-            resources.getColor(android.R.color.holo_green_light),
-            resources.getColor(android.R.color.holo_orange_dark),
-            resources.getColor(android.R.color.holo_orange_light),
-            resources.getColor(android.R.color.holo_purple),
-            resources.getColor(android.R.color.holo_red_dark),
-            resources.getColor(android.R.color.holo_red_light)
+            ColorUtil.getColor(android.R.color.holo_blue_bright),
+            ColorUtil.getColor(android.R.color.holo_blue_dark),
+            ColorUtil.getColor(android.R.color.holo_blue_light),
+            ColorUtil.getColor(android.R.color.holo_green_dark),
+            ColorUtil.getColor(android.R.color.holo_green_light),
+            ColorUtil.getColor(android.R.color.holo_orange_dark),
+            ColorUtil.getColor(android.R.color.holo_orange_light),
+            ColorUtil.getColor(android.R.color.holo_purple),
+            ColorUtil.getColor(android.R.color.holo_red_dark),
+            ColorUtil.getColor(android.R.color.holo_red_light)
     };
-
-    public static int getRandomResId() {
-
-        return resIds[new Random().nextInt(resIds.length)];
-    }
-
-    public static int getRandomColor() {
-
-        return colors[new Random().nextInt(colors.length)];
-    }
 
     public static Topic getRandomTopic() {
 
         return new Topic(getRandomColor(), getRandomResId());
+    }
+
+    private static int getRandomResId() {
+
+        return resIds[new Random().nextInt(resIds.length)];
+    }
+
+    private static int getRandomColor() {
+
+        return colors[new Random().nextInt(colors.length)];
     }
 
 }
