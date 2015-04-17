@@ -23,7 +23,6 @@ public class HotFragment extends Fragment {
 
     private ViewPager mViewPager;
 
-
     private View rootView;
 
     @Override
@@ -43,8 +42,8 @@ public class HotFragment extends Fragment {
 
         mSlidingTabLayout = (SlidingTabLayout) rootView.findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setViewPager(mViewPager);
-        mSlidingTabLayout.setSelectedIndicatorColors(ColorUtil.getColor(R.color.green));
-
+        mSlidingTabLayout.setSelectedIndicatorColors(android.R.color.holo_blue_bright);
+//        mSlidingTabLayout.setSelectedIndicatorColors(ColorUtil.getColor(R.color.green));
         return rootView;
     }
 
